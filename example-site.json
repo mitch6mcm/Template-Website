@@ -1,0 +1,74 @@
+{
+  "business_name": "Glint Window Cleaning",
+  "phone": "(502) 548-1460",
+  "address": {"street": "12303 Santa Maria Dr", "city": "Sellersburg", "state": "IN", "zip": "47172"},
+  "colors": {"dark": "#0b2a4a", "main": "#1572c4", "light": "#e8f4fd", "accent": "#5bc0f8"},
+  "logo": "",
+  "rating": "5.0",
+  "review_count": "",
+  "maps_url": "https://maps.google.com/?cid=1474864409630359186",
+  "photos": ["img/p1.jpg", "img/p2.jpg", "img/p3.jpg", "img/p4.jpg", "img/p5.jpg", "img/p6.jpg", "img/p7.jpg", "img/p8.jpg"],
+
+  "page_title": "Glint Window Cleaning | Sellersburg, IN Window Cleaning",
+  "meta_description": "Streak-free residential & commercial window cleaning in Sellersburg, IN and the Louisville area. 5-star rated. Call (502) 548-1460.",
+  "announcement": "❄️ Now booking holiday & winter window cleanings in Sellersburg & Southern Indiana. Call today to reserve your spot!",
+  "hero_title": "Crystal-Clear, *Streak-Free* Windows in Sellersburg, IN",
+  "hero_subtitle": "Glint Window Cleaning delivers spotless residential and commercial window cleaning across Sellersburg, Clark County and the Louisville metro, done right by a perfectionist who cares.",
+  "hero_bullets": [
+    "Streak-free, \"invisible glass\" results every time",
+    "Homes, storefronts & restaurants, inside and out",
+    "On-time appointments & fast, friendly communication",
+    "Flexible scheduling, including recurring monthly service",
+    "Locally owned & 5-star rated on Google"
+  ],
+  "cta_button": "Get My Free Quote",
+
+  "services_title": "Window Cleaning Services",
+  "services_subtitle": "Professional care for every pane, frame and screen, residential and commercial.",
+  "services": [
+    {"title": "Residential Window Cleaning", "text": "Interior and exterior glass cleaned by hand for a brilliant, streak-free shine on your home.", "image": "img/p2.jpg"},
+    {"title": "Commercial & Storefront", "text": "Restaurants, offices and retail. Clean windows that make a great first impression on customers.", "image": "img/p3.jpg"},
+    {"title": "Recurring Maintenance Plans", "text": "Monthly or seasonal service so your glass always looks its best without you lifting a finger.", "image": "img/p4.jpg"},
+    {"title": "Screens, Tracks & Sills", "text": "Detail cleaning of screens, tracks, frames and sills for a complete, like-new finish.", "image": "img/p6.jpg"}
+  ],
+
+  "benefits_eyebrow": "Why Glint",
+  "benefits_title": "The Glint Difference",
+  "benefits": [
+    {"icon": "✨", "title": "Perfectionist Quality", "text": "Every window inspected so it looks practically invisible."},
+    {"icon": "⏰", "title": "On Time, Every Time", "text": "Clear communication and appointments kept. No waiting around."},
+    {"icon": "🧼", "title": "Clean & Respectful", "text": "We leave no trace we were there, except spotless glass."},
+    {"icon": "📅", "title": "Available 24/7", "text": "Reach us any day of the week to schedule service that fits you."}
+  ],
+
+  "about_title": "Local Window Cleaning Done Right",
+  "about_image": "img/p7.jpg",
+  "about_paragraphs": [
+    "Glint Window Cleaning is a locally owned window cleaning company based in Sellersburg, Indiana. We serve homeowners and businesses throughout Clark County, Floyd County and the greater Louisville area.",
+    "Our customers know us for our attention to detail. Owner Jeremy is a self-described perfectionist who doesn't leave until every pane is spotless."
+  ],
+  "stats": [
+    {"value": "5.0★", "label": "Google Rating"},
+    {"value": "100%", "label": "Satisfaction Focus"},
+    {"value": "24/7", "label": "Availability"}
+  ],
+
+  "reviews": [
+    {"name": "Deanna Bodenbender", "stars": 5, "text": "Absolutely the best! Communication was spot on! Appointment spot on! Service unmatched! A phone number definitely worth keeping."},
+    {"name": "Beth Wells", "stars": 5, "text": "Jeremy Bach cleaned all my windows and did an awesome job. He is a perfectionist and makes sure everything is perfect."},
+    {"name": "The Goodness", "stars": 5, "text": "Had Glint come out and clean the windows at my restaurant and I was very impressed. Every window was invisible."}
+  ],
+
+  "faq": [
+    {"q": "What areas do you serve?", "a": "We're based in Sellersburg, IN and serve Clark and Floyd Counties plus the greater Louisville area."},
+    {"q": "Do you clean both inside and outside?", "a": "Yes. We offer interior and exterior window cleaning, plus screens, tracks and sills."},
+    {"q": "Do you work on commercial properties?", "a": "Absolutely. Storefronts, restaurants and offices. Recurring monthly plans are available."},
+    {"q": "How do I get a price?", "a": "Fill out the quote form or call (502) 548-1460. Quotes are 100% free with no obligation."}
+  ],
+
+  "hours": "Open 24 hours, 7 days a week",
+  "service_area": "Sellersburg, Clark County, Floyd County & Louisville Metro",
+
+  "cta_title": "Ready for Sparkling Clean Windows?",
+  "cta_subtitle": "Get your free, no-obligation quote today."
+}
