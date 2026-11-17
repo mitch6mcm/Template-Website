@@ -42,26 +42,25 @@ details{background:#fff;border-radius:10px;margin-bottom:12px;padding:18px 22px;
 .cta{background:linear-gradient(rgba({{DARK_RGB}},.88),rgba({{DARK_RGB}},.88)),url({{CTA_IMAGE}}) center/cover,var(--dark);color:#fff;text-align:center}.cta h2{font-size:2.3rem;margin-bottom:10px}.cta .btn-o{background:transparent;color:#fff;border-color:#fff}
 footer{background:var(--dark);color:#c8d6e5;text-align:center;padding:30px 5%;font-size:.9rem}
 body{overflow-x:clip}
-@media(max-width:900px){nav{flex-wrap:wrap;row-gap:8px}}
-@media(max-width:900px){.links{order:3;width:100%;overflow-x:auto}}
-@media(max-width:900px){.links{white-space:nowrap;gap:18px;font-size:.9rem}}
+.burger{display:none;background:none;border:2px solid var(--main);color:var(--main);border-radius:8px;font-size:1.4rem;line-height:1;padding:6px 12px;cursor:pointer}
+@media(max-width:900px){nav{flex-wrap:wrap;row-gap:0}}
+@media(max-width:900px){.burger{display:block}.links{display:none;order:3;width:100%}}
+@media(max-width:900px){header.open .links{display:flex;flex-direction:column;gap:0}}
+@media(max-width:900px){.links a{padding:13px 0;border-top:1px solid #e5e5e5}}
 @media(max-width:900px){.hero-in,.about,.loc{grid-template-columns:1fr}}
-@media(max-width:900px){.navbtns .btn{padding:9px 12px;font-size:.85rem}}
 @media(max-width:900px){.about img{height:300px}.hero{min-height:auto}}
-@media(max-width:520px){.navbtns .btn-o{display:none}nav{padding:10px 16px}}
-@media(max-width:520px){.logo img{height:38px}.btn{padding:11px 16px}}
-@media(max-width:520px){section{padding:50px 16px}.hero{padding:32px 16px}}
-@media(max-width:520px){.hero h1{font-size:2rem}}
 @media(max-width:900px){.navbtns{margin-left:auto;gap:8px}.navbtns .btn{padding:8px 11px;font-size:.78rem}}
-@media(max-width:520px){.ann{font-size:.7rem;padding:3px 10px}}  
-@media(max-width:520px){.logo img{height:56px}nav{column-gap:10px}}  
+@media(max-width:520px){.navbtns .btn-o{display:none}nav{padding:10px 16px;column-gap:6px}}
+@media(max-width:520px){.btn{padding:11px 16px}.ann{font-size:.7rem;padding:3px 10px}}
+@media(max-width:520px){section{padding:50px 16px}.hero{padding:32px 16px}.hero h1{font-size:2rem}}
+@media(max-width:520px){.logo img{height:auto;width:auto;max-width:36vw;max-height:56px}.navbtns .btn{padding:8px 9px;font-size:.74rem}.burger{padding:5px 9px;font-size:1.25rem}}
 </style></head><body>
 <!--IF announcement--><div class="ann">{{ANNOUNCEMENT}}</div><!--ENDIF announcement-->
 <header><nav>
 <a href="#top" class="logo">{{LOGO}}</a>
-<div class="links">{{NAV_LINKS}}</div>
+<div class="links" onclick="this.parentNode.parentNode.classList.remove('open')">{{NAV_LINKS}}</div>
 <div class="navbtns"><a class="btn btn-o" href="tel:{{PHONE_TEL}}">📞 {{PHONE}}</a><a class="btn btn-p" href="#quote">{{CTA_BUTTON}}</a></div>
-</nav></header>
+<button class="burger" aria-label="Menu" onclick="this.parentNode.parentNode.classList.toggle('open')">☰</button></nav></header>
 <section class="hero" id="top"><div class="hero-in">
 <div><!--IF rating--><div class="stars">★★★★★ <span style="color:#fff">{{RATING_LINE}}</span></div><!--ENDIF rating-->
 <h1>{{HERO_TITLE}}</h1>
