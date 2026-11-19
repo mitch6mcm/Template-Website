@@ -61,7 +61,23 @@ def main():
     faq = d.get("faq", [])
     benefits = d.get("benefits", [])
     stats = d.get("stats", [])
-    gallery = d.get("gallery", photos)
+    # Photo allocation: each photo is used once. Only if fewer than 6 unique
+    # photos exist may a photo appear a second time, never twice in one section.
+    uniq = list(dict.fromkeys(photos))
+    use_count = {}
+    in_section = {}
+
+    def take(section, preferred=""):
+        seen = in_section.setdefault(section, set())
+        cands = ([preferred] if preferred else []) + uniq
+        for p in cands:
+            if p and use_count.get(p, 0) == 0:
+                use_count[p] = 1; seen.add(p); return p
+        if len(uniq) < 6:
+            for p in cands:
+                if p and use_count.get(p, 0) < 2 and p not in seen:
+                    use_count[p] = use_count.get(p, 0) + 1; seen.add(p); return p
+        return ""
 
     # Logo: real logo image if provided, else icon + two-tone business name
     words = name.split()
@@ -99,13 +115,15 @@ def main():
     else:
         hours_html = ""
 
-    def pic(i):
-        return photos[i % len(photos)] if photos else ""
+    hero_img = take("hero", d.get("hero_image") or first_photo)
 
     service_cards = "".join(
-        (f'<div class="card"><img src="{esc(s.get("image") or pic(i + 1))}" alt="{esc(s["title"])}" loading="lazy">' if (s.get("image") or photos) else '<div class="card">')
+        (f'<div class="card"><img src="{esc(img)}" alt="{esc(s["title"])}" loading="lazy">' if img else '<div class="card">')
         + f'<div><h3>{esc(s["title"])}</h3><p>{esc(s["text"])}</p></div></div>'
-        for i, s in enumerate(services))
+        for s, img in ((s, take("services", s.get("image", ""))) for s in services))
+    about_img = take("about", d.get("about_image", ""))
+    cta_img = take("cta", d.get("cta_image", ""))
+    gallery = [g for g in (take("gallery", g) for g in d["gallery"]) if g] if d.get("gallery") else [p for p in uniq if use_count.get(p, 0) == 0 and not use_count.__setitem__(p, 1)]
     benefit_cards = "".join(
         f'<div class="ben"><i>{esc(b.get("icon", "✔️"))}</i><h3>{esc(b["title"])}</h3><p>{esc(b["text"])}</p></div>'
         for b in benefits)
@@ -142,7 +160,7 @@ def main():
         "HERO_TITLE": emphasize(d["hero_title"]),
         "HERO_SUBTITLE": esc(d.get("hero_subtitle", "")),
         "HERO_BULLETS": "".join(f"<li>{esc(b)}</li>" for b in d.get("hero_bullets", [])),
-        "HERO_IMAGE": esc(d.get("hero_image") or first_photo),
+        "HERO_IMAGE": esc(hero_img),
         "FORM_TITLE": esc(d.get("form_title", "Get Your Free Quote")),
         "FORM_OPTIONS": "".join(f"<option>{esc(o)}</option>" for o in form_opts),
         "SERVICES_TITLE": esc(d.get("services_title", "Our Services")),
@@ -153,7 +171,7 @@ def main():
         "BENEFIT_CARDS": benefit_cards,
         "GALLERY_IMAGES": gallery_imgs,
         "BUSINESS_NAME": esc(name),
-        "ABOUT_IMAGE": esc(d.get("about_image") or pic(len(photos) // 2 if photos else 0)),
+        "ABOUT_IMAGE": esc(about_img),
         "ABOUT_TITLE": esc(d.get("about_title", f"About {name}")),
         "ABOUT_PARAGRAPHS": about_ps,
         "STATS": stats_html,
@@ -166,7 +184,7 @@ def main():
         "MAP_QUERY": map_query,
         "CTA_TITLE": esc(d.get("cta_title", "Ready to Get Started?")),
         "CTA_SUBTITLE": esc(d.get("cta_subtitle", "Get your free, no-obligation quote today.")),
-        "CTA_IMAGE": esc(d.get("cta_image") or pic(4)),
+        "CTA_IMAGE": esc(cta_img),
         "YEAR": str(datetime.date.today().year),
         "FOOTER_ADDRESS": (" · " + esc(full_addr)) if full_addr else "",
     }
@@ -191,6 +209,13 @@ def main():
         sys.exit(f"Unfilled template markers: {leftover}")
 
     (out / "index.html").write_text(page, encoding="utf-8")
+    imgs = re.findall(r'(?:src="|url\()(img/[^")]+)', page)
+    imgs = [i for i in imgs if i != d.get("logo")]
+    dups = sorted({i for i in imgs if imgs.count(i) > 1})
+    if dups and len(uniq) >= 6:
+        sys.exit(f"ERROR: photos used more than once: {dups}")
+    if dups:
+        print("NOTE: fewer than 6 unique photos, so these repeat once:", ", ".join(dups))
     missing = [p for p in set(photos) | {values["HERO_IMAGE"]} if p and not p.startswith("http") and not (out / p).exists()]
     print(f"Built {out / 'index.html'} ({len(page):,} bytes)")
     if missing:
